@@ -73,23 +73,24 @@ namespace Command
             _consola = new ConsolaOperador(_historial, _accionBll);
 
             DoubleBuffered = true;
+            ResizeRedraw = true;
             SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
 
-            ConstruirConsolaTitanium();
+            ConstruirConsolaTitaniumResponsive();
             ActivarModoManana();
             RefrescarTelemetria();
 
             KeyDown += Consola_KeyDown;
         }
 
-        private void ConstruirConsolaTitanium()
+        private void ConstruirConsolaTitaniumResponsive()
         {
             Controls.Clear();
             BackColor = BgChassis;
             ForeColor = TextWhiteCrisp;
 
             // =========================================================================
-            // 1. HEADER: PANEL PRINCIPAL DE TRANSMISIÓN DIGITAL
+            // 1. HEADER RESPONSIVE: BANNER SUPERIOR DE TRANSMISIÓN
             // =========================================================================
             var pnlHeader = new Panel
             {
@@ -110,16 +111,17 @@ namespace Command
                 using var brushBar = new SolidBrush(BorderPlatinumHi);
                 g.FillRectangle(brushBar, 22, 16, 6, 52);
 
-                // Remaches en extremos del header
+                // Remaches en las 4 esquinas responsivas
                 DibujarRemache(g, 12, 12);
-                DibujarRemache(g, pnlHeader.Width - 20, 12);
-                DibujarRemache(g, 12, pnlHeader.Height - 20);
-                DibujarRemache(g, pnlHeader.Width - 20, pnlHeader.Height - 20);
+                DibujarRemache(g, pnlHeader.Width - 18, 12);
+                DibujarRemache(g, 12, pnlHeader.Height - 18);
+                DibujarRemache(g, pnlHeader.Width - 18, pnlHeader.Height - 18);
             };
+            pnlHeader.Resize += (s, e) => pnlHeader.Invalidate();
 
             var lblBrand = new Label
             {
-                Text = "RADIO FX 100 // TITANIUM BROADCAST CONSOLE",
+                Text = "RADIO FX 100 // TITANIUM BROADCAST MATRIX",
                 Font = new Font("Consolas", 15F, FontStyle.Bold),
                 ForeColor = TextWhiteCrisp,
                 AutoSize = true,
@@ -143,65 +145,107 @@ namespace Command
                 TextAlign = ContentAlignment.TopRight,
                 AutoSize = true,
                 Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                Location = new Point(990, 18)
+                Location = new Point(pnlHeader.Width - 180, 18)
             };
 
             pnlHeader.Controls.AddRange(new Control[] { lblBrand, lblSubtitle, lblTelemetryTag });
             Controls.Add(pnlHeader);
 
             // =========================================================================
-            // 2. COLUMNA 1: MATRIZ DE HARDWARE / INVOCADORES (MESA DEL OPERADOR)
+            // 2. STATUS HUD BAR (INFERIOR - RESPONSIVE)
             // =========================================================================
-            var pnlInvokers = CrearRackChassis("MODULE 01 // OPERATOR HARDWARE INVOKERS", 24, 104, 350, 560);
+            lblTelemetryBar = new Label
+            {
+                Dock = DockStyle.Bottom,
+                Height = 38,
+                BackColor = BgPlateHeader,
+                ForeColor = TextPlatinum,
+                Font = new Font("Consolas", 9F),
+                TextAlign = ContentAlignment.MiddleLeft,
+                Padding = new Padding(28, 0, 0, 0),
+                Text = "SYSTEM_READY >> Matriz adaptativa en espera. Presione [1..4], [P] Pedal, o [Ctrl+Z] Pánico."
+            };
+            lblTelemetryBar.Paint += (s, e) =>
+            {
+                using var p = new Pen(BorderPlatinumDim, 1);
+                e.Graphics.DrawLine(p, 0, 0, lblTelemetryBar.Width, 0);
+            };
+            lblTelemetryBar.Resize += (s, e) => lblTelemetryBar.Invalidate();
+            Controls.Add(lblTelemetryBar);
 
-            btnSlot1 = CrearBotonHardware("BTN [01] ➔ CANAL MUTE", BtnMuteMatte, 32);
+            // =========================================================================
+            // 3. GRILLA PRINCIPAL RESPONSIVA (TABLE LAYOUT PANEL: 3 COLUMNAS ADAPTABLES)
+            // =========================================================================
+            var tblMainGrid = new TableLayoutPanel
+            {
+                Dock = DockStyle.Fill,
+                ColumnCount = 3,
+                RowCount = 1,
+                BackColor = Color.Transparent,
+                Padding = new Padding(16, 12, 16, 12)
+            };
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32F)); // Col 1: Hardware Invokers
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 38F)); // Col 2: Audio Rack & Matrix
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F)); // Col 3: Command Stack History
+            tblMainGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+
+            // -------------------------------------------------------------------------
+            // COLUMNA 1: HARDWARE INVOKERS (MESA FÍSICA RESPONSIVA)
+            // -------------------------------------------------------------------------
+            var pnlInvokers = CrearRackChassis("MODULE 01 // OPERATOR HARDWARE INVOKERS");
+            pnlInvokers.Dock = DockStyle.Fill;
+
+            btnSlot1 = CrearBotonHardware("BTN [01] ➔ CANAL MUTE", BtnMuteMatte, 36);
             btnSlot1.Click += (s, e) => PresionarBoton(1);
-            lblTagSlot1 = CrearLabelBinding(78);
+            lblTagSlot1 = CrearLabelBinding(82);
             pnlInvokers.Controls.AddRange(new Control[] { btnSlot1, lblTagSlot1 });
 
-            btnSlot2 = CrearBotonHardware("BTN [02] ➔ MODULADOR DSP PITCH", BtnPitchMatte, 118);
+            btnSlot2 = CrearBotonHardware("BTN [02] ➔ MODULADOR DSP PITCH", BtnPitchMatte, 122);
             btnSlot2.Click += (s, e) => PresionarBoton(2);
-            lblTagSlot2 = CrearLabelBinding(164);
+            lblTagSlot2 = CrearLabelBinding(168);
             pnlInvokers.Controls.AddRange(new Control[] { btnSlot2, lblTagSlot2 });
 
-            btnSlot3 = CrearBotonHardware("BTN [03] ➔ REGULADOR POTENCIA RF", BtnPowerMatte, 204);
+            btnSlot3 = CrearBotonHardware("BTN [03] ➔ REGULADOR POTENCIA RF", BtnPowerMatte, 208);
             btnSlot3.Click += (s, e) => PresionarBoton(3);
-            lblTagSlot3 = CrearLabelBinding(250);
+            lblTagSlot3 = CrearLabelBinding(254);
             pnlInvokers.Controls.AddRange(new Control[] { btnSlot3, lblTagSlot3 });
 
-            btnSlot4 = CrearBotonHardware("BTN [04] ➔ CORTE DE EMERGENCIA", BtnCutMatte, 290);
+            btnSlot4 = CrearBotonHardware("BTN [04] ➔ CORTE DE EMERGENCIA", BtnCutMatte, 294);
             btnSlot4.Click += (s, e) => PresionarBoton(4);
-            lblTagSlot4 = CrearLabelBinding(336);
+            lblTagSlot4 = CrearLabelBinding(340);
             pnlInvokers.Controls.AddRange(new Control[] { btnSlot4, lblTagSlot4 });
 
-            // Pedal de Suelo (disparador alternativo para demostrar eliminación de duplicación)
-            btnPedalSuelo = CrearBotonHardware("🦶 PEDAL DE SUELO [ATAJO RÁPIDO MUTE] (P)", BtnPedalMatte, 386);
+            btnPedalSuelo = CrearBotonHardware("🦶 PEDAL DE SUELO [ATAJO RÁPIDO MUTE] (P)", BtnPedalMatte, 390);
             btnPedalSuelo.Height = 44;
             btnPedalSuelo.Font = new Font("Consolas", 8.5F, FontStyle.Bold);
             btnPedalSuelo.Click += (s, e) => PresionarBoton(1);
             pnlInvokers.Controls.Add(btnPedalSuelo);
 
-            // Botón de Pánico / Undo
-            btnPanicPurge = CrearBotonHardware("🚨 BOTÓN DE PÁNICO // DESHACER (Ctrl+Z)", BtnPanicMatte, 452);
+            btnPanicPurge = CrearBotonHardware("🚨 BOTÓN DE PÁNICO // DESHACER (Ctrl+Z)", BtnPanicMatte, 456);
             btnPanicPurge.Height = 68;
             btnPanicPurge.Font = new Font("Consolas", 10F, FontStyle.Bold);
             btnPanicPurge.Click += (s, e) => PresionarPanico();
             pnlInvokers.Controls.Add(btnPanicPurge);
 
-            Controls.Add(pnlInvokers);
+            tblMainGrid.Controls.Add(pnlInvokers, 0, 0);
 
-            // =========================================================================
-            // 3. COLUMNA 2: RECONFIGURACIÓN EN CALIENTE Y RECEPTORES DE AUDIO (BLL)
-            // =========================================================================
-            var pnlCenterCol = new Panel
+            // -------------------------------------------------------------------------
+            // COLUMNA 2: RECONFIGURACIÓN EN CALIENTE + RACK DE AUDIO (BLL)
+            // -------------------------------------------------------------------------
+            var tblCenterStack = new TableLayoutPanel
             {
-                Location = new Point(390, 104),
-                Size = new Size(370, 560),
+                Dock = DockStyle.Fill,
+                ColumnCount = 1,
+                RowCount = 2,
                 BackColor = Color.Transparent
             };
+            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Absolute, 126F));
+            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
-            // Módulo de Reconfiguración en Caliente
-            var pnlMatrixSwap = CrearRackChassis("MODULE 02 // HOT-SWAP MATRIX", 0, 0, 370, 122);
+            // Submódulo: Matriz de Reconfiguración Dinámica
+            var pnlMatrixSwap = CrearRackChassis("MODULE 02 // HOT-SWAP MATRIX");
+            pnlMatrixSwap.Dock = DockStyle.Fill;
+
             var lblSwapInfo = new Label
             {
                 Text = "Reasigna la matriz de comandos dinámicamente:",
@@ -211,11 +255,23 @@ namespace Command
                 AutoSize = true
             };
 
+            var tblSwapButtons = new TableLayoutPanel
+            {
+                Location = new Point(18, 50),
+                Size = new Size(pnlMatrixSwap.ClientSize.Width - 36, 54),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
+                ColumnCount = 2,
+                RowCount = 1,
+                BackColor = Color.Transparent
+            };
+            tblSwapButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tblSwapButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+
             btnModoManana = new Button
             {
                 Text = "🌅 TURNO MAÑANA\n[Noticias / Entrevistas]",
-                Location = new Point(18, 50),
-                Size = new Size(160, 54),
+                Dock = DockStyle.Fill,
+                Margin = new Padding(0, 0, 5, 0),
                 BackColor = Color.FromArgb(32, 36, 44),
                 ForeColor = TextWhiteCrisp,
                 FlatStyle = FlatStyle.Flat,
@@ -229,8 +285,8 @@ namespace Command
             btnModoNoche = new Button
             {
                 Text = "🎧 TURNO NOCHE\n[Electrónica / DJ Set]",
-                Location = new Point(190, 50),
-                Size = new Size(160, 54),
+                Dock = DockStyle.Fill,
+                Margin = new Padding(5, 0, 0, 0),
                 BackColor = Color.FromArgb(24, 27, 33),
                 ForeColor = TextPlatinum,
                 FlatStyle = FlatStyle.Flat,
@@ -241,13 +297,17 @@ namespace Command
             btnModoNoche.FlatAppearance.BorderSize = 1;
             btnModoNoche.Click += (s, e) => ActivarModoNoche();
 
-            pnlMatrixSwap.Controls.AddRange(new Control[] { lblSwapInfo, btnModoManana, btnModoNoche });
-            pnlCenterCol.Controls.Add(pnlMatrixSwap);
+            tblSwapButtons.Controls.Add(btnModoManana, 0, 0);
+            tblSwapButtons.Controls.Add(btnModoNoche, 1, 0);
 
-            // Módulo Rack de Equipos Técnicos
-            var pnlAudioRack = CrearRackChassis("MODULE 03 // AUDIO RECEIVERS RACK (BLL)", 0, 134, 370, 426);
+            pnlMatrixSwap.Controls.AddRange(new Control[] { lblSwapInfo, tblSwapButtons });
+            tblCenterStack.Controls.Add(pnlMatrixSwap, 0, 0);
 
-            // Transmisor_BLL
+            // Submódulo: Rack de Audio BLL
+            var pnlAudioRack = CrearRackChassis("MODULE 03 // AUDIO RECEIVERS RACK (BLL)");
+            pnlAudioRack.Dock = DockStyle.Fill;
+            pnlAudioRack.Margin = new Padding(0, 8, 0, 0);
+
             var lblTxHeader = new Label
             {
                 Text = "▶ TRANSMISOR PRINCIPAL [Transmisor_BLL]:",
@@ -265,7 +325,8 @@ namespace Command
                 BackColor = Color.FromArgb(24, 38, 30),
                 TextAlign = ContentAlignment.MiddleCenter,
                 Location = new Point(18, 52),
-                Size = new Size(334, 36)
+                Size = new Size(pnlAudioRack.ClientSize.Width - 36, 36),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
             lblDisplayTxStatus.Paint += (s, e) =>
             {
@@ -282,11 +343,12 @@ namespace Command
                 AutoSize = true
             };
 
-            // Vúmetro de Potencia Segmentado
+            // Vúmetro de Potencia Segmentado Adaptable
             pnlSegmentedPowerMeter = new Panel
             {
                 Location = new Point(18, 120),
-                Size = new Size(334, 20),
+                Size = new Size(pnlAudioRack.ClientSize.Width - 36, 20),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 BackColor = Color.FromArgb(12, 14, 18)
             };
             pnlSegmentedPowerMeter.Paint += (s, e) =>
@@ -295,29 +357,30 @@ namespace Command
                 int pot = _transmisor.ObtenerPotenciaActual();
                 int totalSegments = 10;
                 int activeSegments = (int)Math.Round((pot / 100.0) * totalSegments);
-                int segWidth = (pnlSegmentedPowerMeter.Width - (totalSegments * 3)) / totalSegments;
+                int gap = 3;
+                int segWidth = (pnlSegmentedPowerMeter.Width - (totalSegments * gap)) / totalSegments;
 
                 for (int i = 0; i < totalSegments; i++)
                 {
-                    int x = i * (segWidth + 3);
+                    int x = i * (segWidth + gap);
                     bool active = i < activeSegments;
                     Color fillCol = active ? (i < 6 ? Color.FromArgb(180, 190, 205) : (i < 9 ? Color.FromArgb(220, 225, 235) : Color.White))
                                            : Color.FromArgb(26, 30, 38);
 
                     using var b = new SolidBrush(fillCol);
-                    g.FillRectangle(b, x, 2, segWidth, pnlSegmentedPowerMeter.Height - 4);
+                    g.FillRectangle(b, x, 2, Math.Max(2, segWidth), pnlSegmentedPowerMeter.Height - 4);
                 }
                 using var pen = new Pen(BorderPlatinumDim, 1);
                 g.DrawRectangle(pen, 0, 0, pnlSegmentedPowerMeter.Width - 1, pnlSegmentedPowerMeter.Height - 1);
             };
+            pnlSegmentedPowerMeter.Resize += (s, e) => pnlSegmentedPowerMeter.Invalidate();
 
-            // ProcesadorVoz_BLL
             var lblDspHeader = new Label
             {
                 Text = "▶ PROCESADOR DIGITAL DE VOZ [ProcesadorVoz_BLL]:",
                 Font = new Font("Consolas", 8.5F, FontStyle.Bold),
                 ForeColor = TextPlatinum,
-                Location = new Point(18, 160),
+                Location = new Point(18, 154),
                 AutoSize = true
             };
 
@@ -328,8 +391,9 @@ namespace Command
                 ForeColor = TextPlatinum,
                 BackColor = Color.FromArgb(24, 27, 34),
                 TextAlign = ContentAlignment.MiddleCenter,
-                Location = new Point(18, 182),
-                Size = new Size(334, 36)
+                Location = new Point(18, 176),
+                Size = new Size(pnlAudioRack.ClientSize.Width - 36, 36),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
             };
             lblDisplayDspPitch.Paint += (s, e) =>
             {
@@ -342,15 +406,16 @@ namespace Command
                 Text = "GANANCIA ENTRADA: 0 dB [NIVEL NOMINAL]",
                 Font = new Font("Consolas", 8.5F),
                 ForeColor = TextPlatinum,
-                Location = new Point(18, 228),
+                Location = new Point(18, 222),
                 AutoSize = true
             };
 
-            // Placa Técnica Informativa
+            // Placa Técnica Informativa (Se estira verticalmente si se maximiza)
             var pnlTechNote = new Panel
             {
-                Location = new Point(18, 264),
-                Size = new Size(334, 142),
+                Location = new Point(18, 252),
+                Size = new Size(pnlAudioRack.ClientSize.Width - 36, Math.Max(120, pnlAudioRack.ClientSize.Height - 270)),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
                 BackColor = BgPlateHeader
             };
             pnlTechNote.Paint += (s, e) =>
@@ -358,6 +423,7 @@ namespace Command
                 using var pen = new Pen(BorderPlatinumDim, 1);
                 e.Graphics.DrawRectangle(pen, 0, 0, pnlTechNote.Width - 1, pnlTechNote.Height - 1);
             };
+            pnlTechNote.Resize += (s, e) => pnlTechNote.Invalidate();
 
             var lblTechNoteTitle = new Label
             {
@@ -369,11 +435,12 @@ namespace Command
             };
             var lblTechNoteBody = new Label
             {
-                Text = "1. Invocador (Botón) ➔ solo dispara comando.ejecutar().\n2. IComando ➔ puente que delega al Transmisor/DSP.\n3. Historial (Stack) ➔ guarda el objeto ejecutado.\n4. Botón de Pánico ➔ desapila y llama a deshacer().\n\nCero métodos técnicos nuevos en la consola.",
+                Text = "1. Invocador (Botón) ➔ solo dispara comando.ejecutar().\n2. IComando ➔ puente que delega al Transmisor/DSP.\n3. Historial (Stack) ➔ almacena el objeto ejecutado.\n4. Botón de Pánico ➔ desapila y llama a deshacer().\n\nCero métodos técnicos nuevos en la consola.",
                 Font = new Font("Segoe UI", 8F, FontStyle.Regular),
                 ForeColor = TextPlatinum,
                 Location = new Point(12, 32),
-                Size = new Size(310, 102)
+                Size = new Size(pnlTechNote.ClientSize.Width - 24, pnlTechNote.ClientSize.Height - 40),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
             pnlTechNote.Controls.AddRange(new Control[] { lblTechNoteTitle, lblTechNoteBody });
 
@@ -382,14 +449,15 @@ namespace Command
                 lblTxHeader, lblDisplayTxStatus, lblDisplayTxPower, pnlSegmentedPowerMeter,
                 lblDspHeader, lblDisplayDspPitch, lblDisplayDspGain, pnlTechNote
             });
-            pnlCenterCol.Controls.Add(pnlAudioRack);
+            tblCenterStack.Controls.Add(pnlAudioRack, 0, 1);
 
-            Controls.Add(pnlCenterCol);
+            tblMainGrid.Controls.Add(tblCenterStack, 1, 0);
 
-            // =========================================================================
-            // 4. COLUMNA 3: REGISTRO LIFO DE COMANDOS (STACK<ICOMANDO>)
-            // =========================================================================
-            var pnlStackCol = CrearRackChassis("MODULE 04 // LIFO COMMAND STACK (UNDO)", 776, 104, 356, 560);
+            // -------------------------------------------------------------------------
+            // COLUMNA 3: REGISTRO LIFO DE COMANDOS (STACK<ICOMANDO>) - EXPANDIBLE
+            // -------------------------------------------------------------------------
+            var pnlStackCol = CrearRackChassis("MODULE 04 // LIFO COMMAND STACK (UNDO)");
+            pnlStackCol.Dock = DockStyle.Fill;
 
             lblProfundidadPila = new Label
             {
@@ -400,10 +468,12 @@ namespace Command
                 AutoSize = true
             };
 
+            // La lista de historial se estira tanto a lo ancho como a lo alto
             lstPilaComandos = new ListBox
             {
                 Location = new Point(18, 56),
-                Size = new Size(320, 440),
+                Size = new Size(pnlStackCol.ClientSize.Width - 36, pnlStackCol.ClientSize.Height - 96),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
                 BackColor = BgPlateHeader,
                 ForeColor = TextWhiteCrisp,
                 Font = new Font("Consolas", 9F),
@@ -416,41 +486,21 @@ namespace Command
                 Text = "Al pulsar PÁNICO se hace Pop() del tope y se restaura el receptor.",
                 Font = new Font("Consolas", 7.5F, FontStyle.Italic),
                 ForeColor = TextMutedCarbon,
-                Location = new Point(18, 510),
+                Location = new Point(18, pnlStackCol.ClientSize.Height - 30),
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Left,
                 AutoSize = true
             };
 
             pnlStackCol.Controls.AddRange(new Control[] { lblProfundidadPila, lstPilaComandos, lblStackHelp });
-            Controls.Add(pnlStackCol);
+            tblMainGrid.Controls.Add(pnlStackCol, 2, 0);
 
-            // =========================================================================
-            // 5. BARRA DE TELEMETRÍA INFERIOR (STATUS HUD)
-            // =========================================================================
-            lblTelemetryBar = new Label
-            {
-                Dock = DockStyle.Bottom,
-                Height = 38,
-                BackColor = BgPlateHeader,
-                ForeColor = TextPlatinum,
-                Font = new Font("Consolas", 9F),
-                TextAlign = ContentAlignment.MiddleLeft,
-                Padding = new Padding(28, 0, 0, 0),
-                Text = "SYSTEM_READY >> Matriz operativa. Presione botones [1..4], [P] Pedal, o [Ctrl+Z] Pánico."
-            };
-            lblTelemetryBar.Paint += (s, e) =>
-            {
-                using var p = new Pen(BorderPlatinumDim, 1);
-                e.Graphics.DrawLine(p, 0, 0, lblTelemetryBar.Width, 0);
-            };
-            Controls.Add(lblTelemetryBar);
+            Controls.Add(tblMainGrid);
         }
 
-        private Panel CrearRackChassis(string titulo, int x, int y, int width, int height)
+        private Panel CrearRackChassis(string titulo)
         {
             var pnl = new Panel
             {
-                Location = new Point(x, y),
-                Size = new Size(width, height),
                 BackColor = BgRackCard
             };
 
@@ -473,12 +523,13 @@ namespace Command
                 using var fontHdr = new Font("Consolas", 8F, FontStyle.Bold);
                 g.DrawString(titulo, fontHdr, brushText, 12, 6);
 
-                // Remaches en las 4 esquinas del módulo
+                // Remaches en las 4 esquinas responsivas
                 DibujarRemache(g, 6, 6);
                 DibujarRemache(g, pnl.Width - 12, 6);
                 DibujarRemache(g, 6, pnl.Height - 12);
                 DibujarRemache(g, pnl.Width - 12, pnl.Height - 12);
             };
+            pnl.Resize += (s, e) => pnl.Invalidate();
 
             return pnl;
         }
@@ -498,6 +549,7 @@ namespace Command
                 Text = texto,
                 Location = new Point(18, top),
                 Size = new Size(314, 44),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 BackColor = colorMatte,
                 ForeColor = TextWhiteCrisp,
                 FlatStyle = FlatStyle.Flat,
@@ -519,6 +571,7 @@ namespace Command
                 Text = "BINDING: NONE",
                 Location = new Point(20, top),
                 Size = new Size(310, 18),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right,
                 ForeColor = TextMutedCarbon,
                 Font = new Font("Consolas", 7.5F, FontStyle.Regular)
             };

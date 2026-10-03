@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj": {}
+    "c:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj": {
+    "c:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj",
+        "projectUniqueName": "c:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj",
         "projectName": "BE",
-        "projectPath": "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj",
+        "projectPath": "c:\\Users\\Navegador\\Desktop\\Radio\\BE\\BE.csproj",
         "packagesPath": "C:\\Users\\Navegador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\obj\\",
+        "outputPath": "c:\\Users\\Navegador\\Desktop\\Radio\\BE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
