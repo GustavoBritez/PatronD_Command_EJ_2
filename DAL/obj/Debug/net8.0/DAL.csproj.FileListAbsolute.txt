@@ -1,0 +1,16 @@
+c:\Users\Navegador\Desktop\Radio\DAL\bin\Debug\net8.0\DAL.deps.json
+c:\Users\Navegador\Desktop\Radio\DAL\bin\Debug\net8.0\DAL.dll
+c:\Users\Navegador\Desktop\Radio\DAL\bin\Debug\net8.0\DAL.pdb
+c:\Users\Navegador\Desktop\Radio\DAL\bin\Debug\net8.0\BE.dll
+c:\Users\Navegador\Desktop\Radio\DAL\bin\Debug\net8.0\BE.pdb
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.csproj.AssemblyReference.cache
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.AssemblyInfoInputs.cache
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.AssemblyInfo.cs
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.csproj.CoreCompileInputs.cache
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.sourcelink.json
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.csproj.Up2Date
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.dll
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\refint\DAL.dll
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\DAL.pdb
+c:\Users\Navegador\Desktop\Radio\DAL\obj\Debug\net8.0\ref\DAL.dll

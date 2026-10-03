@@ -1,0 +1,12 @@
+c:\Users\Navegador\Desktop\Radio\BE\bin\Debug\net8.0\BE.deps.json
+c:\Users\Navegador\Desktop\Radio\BE\bin\Debug\net8.0\BE.dll
+c:\Users\Navegador\Desktop\Radio\BE\bin\Debug\net8.0\BE.pdb
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.AssemblyInfoInputs.cache
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.AssemblyInfo.cs
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.csproj.CoreCompileInputs.cache
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.sourcelink.json
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.dll
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\refint\BE.dll
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\BE.pdb
+c:\Users\Navegador\Desktop\Radio\BE\obj\Debug\net8.0\ref\BE.dll
