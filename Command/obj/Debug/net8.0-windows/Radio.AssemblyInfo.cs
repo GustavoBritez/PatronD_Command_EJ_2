@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Radio")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b88cb20eff40f0ee10d4029e4968c584d9f1e822")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+219af9f9a531ae5095dcff894f2d90ed7667f490")]
 [assembly: System.Reflection.AssemblyProductAttribute("Radio")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Radio")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

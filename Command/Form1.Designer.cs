@@ -21,17 +21,17 @@ namespace Command
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(10, 10, 12);
+            BackColor = Color.FromArgb(17, 20, 24);
             ClientSize = new Size(1180, 780);
             Font = new Font("Segoe UI", 9.5F, FontStyle.Regular, GraphicsUnit.Point);
-            ForeColor = Color.White;
+            ForeColor = Color.FromArgb(248, 250, 252);
             FormBorderStyle = FormBorderStyle.Sizable;
             KeyPreview = true;
             MaximizeBox = true;
-            MinimumSize = new Size(1000, 680);
+            MinimumSize = new Size(1020, 680);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "RADIO FX 100 // TITANIUM BROADCAST CONSOLE";
+            Text = "Consola de Transmisión de Audio - Patrón Command";
             ResumeLayout(false);
         }
     }
