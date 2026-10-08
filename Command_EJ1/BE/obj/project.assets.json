@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BE\\BE.csproj",
+      "projectUniqueName": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BE\\BE.csproj",
       "projectName": "BE",
-      "projectPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BE\\BE.csproj",
+      "projectPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BE\\BE.csproj",
       "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BE\\obj\\",
+      "outputPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -10,56 +10,48 @@ namespace Command
 {
     public partial class Form1 : Form
     {
-        // =========================================================================
-        // PALETA MODERNA Y SOBRIA: TEMA OSCURO PROFESIONAL (ESTUDIO DE BROADCAST)
-        // =========================================================================
-        private static readonly Color BgForm            = Color.FromArgb(17, 20, 24);     // Fondo principal sobrio
-        private static readonly Color BgCard            = Color.FromArgb(24, 28, 35);     // Superficie de tarjetas
-        private static readonly Color BgCardHeader      = Color.FromArgb(30, 35, 45);     // Encabezado de tarjetas
-        private static readonly Color BgInnerPanel      = Color.FromArgb(19, 22, 28);     // Contenedores internos
-        private static readonly Color BorderCard        = Color.FromArgb(43, 50, 64);     // Bordes sutiles
-        private static readonly Color BorderControl     = Color.FromArgb(51, 60, 77);     // Bordes de controles
+        private static readonly Color BgForm            = Color.FromArgb(17, 20, 24);
+        private static readonly Color BgCard            = Color.FromArgb(24, 28, 35);
+        private static readonly Color BgCardHeader      = Color.FromArgb(30, 35, 45);
+        private static readonly Color BgInnerPanel      = Color.FromArgb(19, 22, 28);
+        private static readonly Color BorderCard        = Color.FromArgb(43, 50, 64);
+        private static readonly Color BorderControl     = Color.FromArgb(51, 60, 77);
 
-        private static readonly Color TextPrimary       = Color.FromArgb(248, 250, 252);  // Texto blanco nítido
-        private static readonly Color TextSecondary     = Color.FromArgb(148, 163, 184);  // Gris pizarra claro
-        private static readonly Color TextMuted         = Color.FromArgb(100, 116, 139);  // Gris pizarra apagado
+        private static readonly Color TextPrimary       = Color.FromArgb(248, 250, 252);
+        private static readonly Color TextSecondary     = Color.FromArgb(148, 163, 184);
+        private static readonly Color TextMuted         = Color.FromArgb(100, 116, 139);
 
-        // ESTILOS DE BOTONES INTERACTIVOS
         private static readonly Color BtnDefaultBg      = Color.FromArgb(32, 38, 49);
         private static readonly Color BtnDefaultHover   = Color.FromArgb(43, 51, 66);
         private static readonly Color BtnDefaultPress   = Color.FromArgb(26, 31, 40);
 
-        private static readonly Color AccentBlue        = Color.FromArgb(37, 99, 235);     // Azul profesional primario
+        private static readonly Color AccentBlue        = Color.FromArgb(37, 99, 235);
         private static readonly Color AccentBlueHover   = Color.FromArgb(29, 78, 216);
         private static readonly Color AccentBlueBorder  = Color.FromArgb(59, 130, 246);
 
-        // ESTADOS DE RECEPTORES (BLL)
-        private static readonly Color OnAirBg           = Color.FromArgb(6, 78, 59);      // Verde esmeralda suave
+        private static readonly Color OnAirBg           = Color.FromArgb(6, 78, 59);
         private static readonly Color OnAirBorder       = Color.FromArgb(16, 185, 129);
         private static readonly Color OnAirText         = Color.FromArgb(167, 243, 208);
 
-        private static readonly Color MutedBg           = Color.FromArgb(69, 10, 10);     // Rojo carmesí sobrio
+        private static readonly Color MutedBg           = Color.FromArgb(69, 10, 10);
         private static readonly Color MutedBorder       = Color.FromArgb(239, 68, 68);
         private static readonly Color MutedText         = Color.FromArgb(254, 202, 202);
 
-        private static readonly Color PitchActiveBg     = Color.FromArgb(46, 16, 101);    // Violeta sobrio
+        private static readonly Color PitchActiveBg     = Color.FromArgb(46, 16, 101);
         private static readonly Color PitchActiveBorder = Color.FromArgb(139, 92, 246);
         private static readonly Color PitchActiveText   = Color.FromArgb(233, 213, 255);
 
-        private static readonly Color UndoBg            = Color.FromArgb(50, 24, 28);     // Acento rojizo sobrio para rollback
+        private static readonly Color UndoBg            = Color.FromArgb(50, 24, 28);
         private static readonly Color UndoBorder        = Color.FromArgb(185, 28, 28);
         private static readonly Color UndoText          = Color.FromArgb(254, 202, 202);
 
-        // CAPA DE NEGOCIO Y HARDWARE (RECEPTORES)
         private readonly Transmisor_BLL _transmisor = new Transmisor_BLL();
         private readonly ProcesadorVoz_BLL _procesador = new ProcesadorVoz_BLL();
         private readonly Accion_BLL _accionBll = new Accion_BLL();
 
-        // CAPA DE SERVICIO Y COMANDOS (INVOCADOR + PILA)
         private readonly Historial _historial = new Historial();
         private readonly ConsolaOperador _consola;
 
-        // CONTROLES DE LA INTERFAZ
         private Button btnSlot1 = null!;
         private Button btnSlot2 = null!;
         private Button btnSlot3 = null!;
@@ -85,6 +77,8 @@ namespace Command
         private Label lblProfundidadPila = null!;
         private Label lblStatusBar = null!;
 
+        ///PRE: Ninguno.
+        ///POST: Inicializa los componentes, consola, interfaz y activa la configuración inicial.
         public Form1()
         {
             InitializeComponent();
@@ -101,15 +95,14 @@ namespace Command
             KeyDown += Consola_KeyDown;
         }
 
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Inicializa y estructura todos los controles visuales del formulario.
         private void ConstruirInterfaz()
         {
             Controls.Clear();
             BackColor = BgForm;
             ForeColor = TextPrimary;
 
-            // =========================================================================
-            // 1. HEADER SUPERIOR: BARRA DE TÍTULO Y CONECTIVIDAD
-            // =========================================================================
             var pnlHeader = new Panel
             {
                 Dock = DockStyle.Top,
@@ -171,9 +164,6 @@ namespace Command
             pnlHeader.Controls.AddRange(new Control[] { lblTitle, lblSubtitle, pnlHeaderRight });
             Controls.Add(pnlHeader);
 
-            // =========================================================================
-            // 2. STATUS BAR INFERIOR
-            // =========================================================================
             lblStatusBar = new Label
             {
                 Dock = DockStyle.Bottom,
@@ -193,9 +183,6 @@ namespace Command
             lblStatusBar.Resize += (s, e) => lblStatusBar.Invalidate();
             Controls.Add(lblStatusBar);
 
-            // =========================================================================
-            // 3. GRILLA PRINCIPAL (3 COLUMNAS RESPONSIVAS)
-            // =========================================================================
             var tblMainGrid = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -204,18 +191,14 @@ namespace Command
                 BackColor = Color.Transparent,
                 Padding = new Padding(16, 14, 16, 14)
             };
-            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F)); // Col 1: Panel de Operador
-            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37F)); // Col 2: Perfiles y Receptores
-            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F)); // Col 3: Historial LIFO
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33F));
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 37F));
+            tblMainGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tblMainGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
-            // -------------------------------------------------------------------------
-            // COLUMNA 1: PANEL DE OPERADOR (INVOCADORES)
-            // -------------------------------------------------------------------------
             var pnlCol1Card = CrearCardPanel("PANEL DE OPERADOR (INVOCADORES)");
             pnlCol1Card.Dock = DockStyle.Fill;
 
-            // Panel contenedor interior para distribuir los controles con padding
             var pnlCol1Content = new Panel
             {
                 Location = new Point(16, 44),
@@ -229,34 +212,29 @@ namespace Command
             int btnHeight = 42;
             int slotGap = 64;
 
-            // Slot 1
             btnSlot1 = CrearBotonAccion("[1]  Silenciar Canal", yPos, btnHeight);
             btnSlot1.Click += (s, e) => PresionarBoton(1);
             lblTagSlot1 = CrearLabelDetalle(yPos + btnHeight + 4);
             pnlCol1Content.Controls.AddRange(new Control[] { btnSlot1, lblTagSlot1 });
 
-            // Slot 2
             yPos += slotGap;
             btnSlot2 = CrearBotonAccion("[2]  Modulador de Voz", yPos, btnHeight);
             btnSlot2.Click += (s, e) => PresionarBoton(2);
             lblTagSlot2 = CrearLabelDetalle(yPos + btnHeight + 4);
             pnlCol1Content.Controls.AddRange(new Control[] { btnSlot2, lblTagSlot2 });
 
-            // Slot 3
             yPos += slotGap;
             btnSlot3 = CrearBotonAccion("[3]  Potencia de Transmisión", yPos, btnHeight);
             btnSlot3.Click += (s, e) => PresionarBoton(3);
             lblTagSlot3 = CrearLabelDetalle(yPos + btnHeight + 4);
             pnlCol1Content.Controls.AddRange(new Control[] { btnSlot3, lblTagSlot3 });
 
-            // Slot 4
             yPos += slotGap;
             btnSlot4 = CrearBotonAccion("[4]  Corte de Emergencia", yPos, btnHeight);
             btnSlot4.Click += (s, e) => PresionarBoton(4);
             lblTagSlot4 = CrearLabelDetalle(yPos + btnHeight + 4);
             pnlCol1Content.Controls.AddRange(new Control[] { btnSlot4, lblTagSlot4 });
 
-            // Separador
             yPos += slotGap + 6;
             var sepLine = new Panel
             {
@@ -267,14 +245,12 @@ namespace Command
             };
             pnlCol1Content.Controls.Add(sepLine);
 
-            // Pedal de Suelo (Atajo)
             yPos += 14;
             btnPedalSuelo = CrearBotonAccion("Pedal de Mute (Atajo Tecla P / Espacio)", yPos, 38);
             btnPedalSuelo.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
             btnPedalSuelo.Click += (s, e) => PresionarBoton(1);
             pnlCol1Content.Controls.Add(btnPedalSuelo);
 
-            // Botón Deshacer
             yPos += 48;
             btnDeshacer = new Button
             {
@@ -299,9 +275,6 @@ namespace Command
             pnlCol1Card.Controls.Add(pnlCol1Content);
             tblMainGrid.Controls.Add(pnlCol1Card, 0, 0);
 
-            // -------------------------------------------------------------------------
-            // COLUMNA 2: PERFILES DE TRANSMISIÓN Y RECEPTORES DE AUDIO (BLL)
-            // -------------------------------------------------------------------------
             var tblCenterStack = new TableLayoutPanel
             {
                 Dock = DockStyle.Fill,
@@ -309,10 +282,9 @@ namespace Command
                 RowCount = 2,
                 BackColor = Color.Transparent
             };
-            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F)); // Perfiles
-            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));  // Receptores BLL
+            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Absolute, 120F));
+            tblCenterStack.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
 
-            // Submódulo: Perfiles de Transmisión
             var pnlProfilesCard = CrearCardPanel("PERFILES DE TRANSMISIÓN");
             pnlProfilesCard.Dock = DockStyle.Fill;
 
@@ -373,7 +345,6 @@ namespace Command
             pnlProfilesCard.Controls.AddRange(new Control[] { lblProfileInfo, tblProfileButtons });
             tblCenterStack.Controls.Add(pnlProfilesCard, 0, 0);
 
-            // Submódulo: Receptores de Audio BLL
             var pnlReceiversCard = CrearCardPanel("ESTADO DE RECEPTORES DE AUDIO (BLL)");
             pnlReceiversCard.Dock = DockStyle.Fill;
             pnlReceiversCard.Margin = new Padding(0, 8, 0, 0);
@@ -387,7 +358,6 @@ namespace Command
                 AutoScroll = true
             };
 
-            // Sección Transmisor
             var lblTxSection = new Label
             {
                 Text = "Transmisor Principal (Transmisor_BLL)",
@@ -423,7 +393,6 @@ namespace Command
                 AutoSize = true
             };
 
-            // Barra de Nivel de Potencia Limpia y Continua
             pnlPowerMeter = new Panel
             {
                 Location = new Point(0, 92),
@@ -445,18 +414,15 @@ namespace Command
                     g.FillRectangle(b, 1, 1, fillWidth, pnlPowerMeter.Height - 2);
                 }
 
-                // Borde suave
                 using var penBorder = new Pen(BorderCard, 1);
                 g.DrawRectangle(penBorder, 0, 0, pnlPowerMeter.Width - 1, pnlPowerMeter.Height - 1);
 
-                // Marca de 50%
                 int midX = pnlPowerMeter.Width / 2;
                 using var penMid = new Pen(Color.FromArgb(70, 78, 95), 1);
                 g.DrawLine(penMid, midX, 1, midX, pnlPowerMeter.Height - 2);
             };
             pnlPowerMeter.Resize += (s, e) => pnlPowerMeter.Invalidate();
 
-            // Sección Procesador de Voz
             var lblDspSection = new Label
             {
                 Text = "Procesador de Voz (ProcesadorVoz_BLL)",
@@ -494,7 +460,6 @@ namespace Command
                 AutoSize = true
             };
 
-            // Cuadro Informativo de Arquitectura
             var pnlArchNote = new Panel
             {
                 Location = new Point(0, 222),
@@ -543,9 +508,6 @@ namespace Command
             tblCenterStack.Controls.Add(pnlReceiversCard, 0, 1);
             tblMainGrid.Controls.Add(tblCenterStack, 1, 0);
 
-            // -------------------------------------------------------------------------
-            // COLUMNA 3: HISTORIAL DE COMANDOS (PILA LIFO)
-            // -------------------------------------------------------------------------
             var pnlStackCard = CrearCardPanel("HISTORIAL DE COMANDOS (PILA LIFO)");
             pnlStackCard.Dock = DockStyle.Fill;
 
@@ -588,6 +550,8 @@ namespace Command
             Controls.Add(tblMainGrid);
         }
 
+        ///PRE: Recibe titulo (string) del encabezado de la tarjeta.
+        ///POST: Retorna un nuevo Panel estilizado como tarjeta con borde y cabecera.
         private Panel CrearCardPanel(string titulo)
         {
             var pnl = new Panel
@@ -600,16 +564,13 @@ namespace Command
                 var g = e.Graphics;
                 g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // Borde exterior sutil
                 using var penBorder = new Pen(BorderCard, 1);
                 g.DrawRectangle(penBorder, 0, 0, pnl.Width - 1, pnl.Height - 1);
 
-                // Franja de encabezado superior
                 using var brushHeader = new SolidBrush(BgCardHeader);
                 g.FillRectangle(brushHeader, 1, 1, pnl.Width - 2, 32);
                 g.DrawLine(penBorder, 0, 32, pnl.Width, 32);
 
-                // Título del encabezado
                 using var brushText = new SolidBrush(TextSecondary);
                 using var fontHdr = new Font("Segoe UI", 8F, FontStyle.Bold);
                 g.DrawString(titulo, fontHdr, brushText, 14, 8);
@@ -619,6 +580,8 @@ namespace Command
             return pnl;
         }
 
+        ///PRE: Recibe texto (string) del botón, top (int) de posición vertical y height (int) de altura.
+        ///POST: Retorna una nueva instancia de Button estilizada de forma plana.
         private Button CrearBotonAccion(string texto, int top, int height)
         {
             var btn = new Button
@@ -641,6 +604,8 @@ namespace Command
             return btn;
         }
 
+        ///PRE: Recibe top (int) con la coordenada vertical del control.
+        ///POST: Retorna una nueva instancia de Label para indicar el comando asignado al botón.
         private Label CrearLabelDetalle(int top)
         {
             return new Label
@@ -654,6 +619,8 @@ namespace Command
             };
         }
 
+        ///PRE: Recibe sender (object?) y e (DrawItemEventArgs) con el contexto de pintado del ítem.
+        ///POST: No retorna valor. Dibuja el elemento del ListBox con formato personalizado.
         private void LstPilaComandos_DrawItem(object? sender, DrawItemEventArgs e)
         {
             if (e.Index < 0 || e.Index >= lstPilaComandos.Items.Count) return;
@@ -662,21 +629,18 @@ namespace Command
             string texto = lstPilaComandos.Items[e.Index].ToString() ?? "";
             bool isTop = e.Index == 0 && _historial.Cantidad > 0;
 
-            // Fondo del ítem
             Color itemBg = isTop ? Color.FromArgb(28, 36, 52) : ((e.State & DrawItemState.Selected) != 0 ? Color.FromArgb(35, 42, 56) : BgInnerPanel);
             using (var brushBg = new SolidBrush(itemBg))
             {
                 g.FillRectangle(brushBg, e.Bounds);
             }
 
-            // Acento vertical en el tope de la pila
             if (isTop)
             {
                 using var bAccent = new SolidBrush(AccentBlueBorder);
                 g.FillRectangle(bAccent, e.Bounds.Left, e.Bounds.Top, 4, e.Bounds.Height);
             }
 
-            // Texto del ítem
             Color textColor = isTop ? TextPrimary : ((_historial.Cantidad == 0) ? TextMuted : TextSecondary);
             using (var brushText = new SolidBrush(textColor))
             {
@@ -685,14 +649,12 @@ namespace Command
                 g.DrawString(texto, font, brushText, textRect);
             }
 
-            // Borde inferior sutil
             using var penLine = new Pen(BorderCard, 1);
             g.DrawLine(penLine, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
         }
 
-        // =========================================================================
-        // RECONFIGURACIÓN DINÁMICA DE PROGRAMAS (COMMAND PATTERN)
-        // =========================================================================
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Asigna comandos del perfil de la mañana a los botones del operador y actualiza la vista.
         private void ActivarModoManana()
         {
             _consola.ConfigurarBoton(1, "Mutear Micrófonos", new ComandoModoMuteS(_transmisor));
@@ -712,6 +674,8 @@ namespace Command
             RefrescarTelemetria();
         }
 
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Asigna comandos del perfil de la noche a los botones del operador y actualiza la vista.
         private void ActivarModoNoche()
         {
             _consola.ConfigurarBoton(1, "Mutear Transmisión", new ComandoModoMuteS(_transmisor));
@@ -731,6 +695,8 @@ namespace Command
             RefrescarTelemetria();
         }
 
+        ///PRE: Recibe numero (int) correspondiente al slot de botón presionado.
+        ///POST: No retorna valor. Ejecuta el comando asociado, actualiza la telemetría y la barra de estado.
         private void PresionarBoton(int numero)
         {
             var boton = _consola.ObtenerBoton(numero);
@@ -743,6 +709,8 @@ namespace Command
             }
         }
 
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Deshace la última acción registrada en el historial y actualiza la telemetría.
         private void PresionarPanico()
         {
             var deshecho = _consola.PresionarBotonPanico();
@@ -757,15 +725,15 @@ namespace Command
             RefrescarTelemetria();
         }
 
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Actualiza todos los elementos de la interfaz reflejando el estado de los receptores e historial.
         private void RefrescarTelemetria()
         {
-            // 1. Asignaciones de los botones del operador
             lblTagSlot1.Text = $"Comando asignado: {_consola.ObtenerBoton(1)?.Comando?.nombre ?? "Ninguno"}";
             lblTagSlot2.Text = $"Comando asignado: {_consola.ObtenerBoton(2)?.Comando?.nombre ?? "Ninguno"}";
             lblTagSlot3.Text = $"Comando asignado: {_consola.ObtenerBoton(3)?.Comando?.nombre ?? "Ninguno"}";
             lblTagSlot4.Text = $"Comando asignado: {_consola.ObtenerBoton(4)?.Comando?.nombre ?? "Ninguno"}";
 
-            // 2. Estado del Transmisor
             bool muteado = _transmisor.EstaMuteado();
             if (muteado)
             {
@@ -785,7 +753,6 @@ namespace Command
             lblDisplayTxPower.Text = $"Potencia de Antena: {potencia} W ({modoPotencia})";
             pnlPowerMeter?.Invalidate();
 
-            // 3. Estado del Procesador de Voz
             bool pitch = _procesador.EstaPitchActivo();
             if (pitch)
             {
@@ -802,7 +769,6 @@ namespace Command
 
             lblDisplayDspGain.Text = $"Ganancia de Entrada: {_procesador.ObtenerGananciaActual()} dB (Nivel Nominal)";
 
-            // 4. Pila de Historial LIFO
             lstPilaComandos.Items.Clear();
             var lista = _historial.ObtenerTodos().ToList();
             lblProfundidadPila.Text = $"Comandos en pila: {lista.Count}";
@@ -824,6 +790,8 @@ namespace Command
             lblDisplayDspPitch.Invalidate();
         }
 
+        ///PRE: Recibe sender (object?) y e (KeyEventArgs) con los datos del evento de teclado.
+        ///POST: No retorna valor. Captura combinaciones de teclas de acceso rápido y acciona los comandos.
         private void Consola_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.Z)
@@ -853,7 +821,7 @@ namespace Command
             }
             else if (e.KeyCode == Keys.P || e.KeyCode == Keys.Space)
             {
-                PresionarBoton(1); // Pedal de suelo
+                PresionarBoton(1);
                 e.Handled = true;
             }
         }

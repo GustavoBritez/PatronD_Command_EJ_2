@@ -4,6 +4,8 @@ namespace Command
     {
         private System.ComponentModel.IContainer components = null;
 
+        ///PRE: Recibe disposing (bool) indicando si los recursos administrados deben liberarse.
+        ///POST: No retorna valor. Libera los recursos del formulario.
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -13,12 +15,11 @@ namespace Command
             base.Dispose(disposing);
         }
 
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Inicializa las propiedades del formulario.
         private void InitializeComponent()
         {
             SuspendLayout();
-            // 
-            // Form1
-            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(17, 20, 24);

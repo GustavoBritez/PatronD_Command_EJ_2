@@ -1,0 +1,17 @@
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\bin\Debug\net8.0-windows\Command_EJ2.exe
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\bin\Debug\net8.0-windows\Command_EJ2.deps.json
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\bin\Debug\net8.0-windows\Command_EJ2.runtimeconfig.json
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\bin\Debug\net8.0-windows\Command_EJ2.dll
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\bin\Debug\net8.0-windows\Command_EJ2.pdb
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.Form1.resources
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.csproj.GenerateResource.cache
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.AssemblyInfoInputs.cache
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.AssemblyInfo.cs
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.csproj.CoreCompileInputs.cache
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.sourcelink.json
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.dll
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\refint\Command_EJ2.dll
+C:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.pdb
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\Command_EJ2.genruntimeconfig.cache
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ2\obj\Debug\net8.0-windows\ref\Command_EJ2.dll

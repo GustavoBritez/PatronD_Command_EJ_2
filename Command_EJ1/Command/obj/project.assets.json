@@ -91,11 +91,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command\\Radio.csproj",
+      "projectUniqueName": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\Command\\Radio.csproj",
       "projectName": "Radio",
-      "projectPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command\\Radio.csproj",
+      "projectPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\Command\\Radio.csproj",
       "packagesPath": "C:\\Users\\Danie\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command\\obj\\",
+      "outputPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\Command\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -116,14 +116,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BE\\BE.csproj": {
-              "projectPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BE\\BE.csproj"
+            "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BE\\BE.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BE\\BE.csproj"
             },
-            "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BLL\\BLL.csproj": {
-              "projectPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\BLL\\BLL.csproj"
+            "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\BLL\\BLL.csproj"
             },
-            "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Servicio\\Servicio.csproj": {
-              "projectPath": "c:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Servicio\\Servicio.csproj"
+            "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\Servicio\\Servicio.csproj": {
+              "projectPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ1\\Servicio\\Servicio.csproj"
             }
           }
         }

@@ -22,3 +22,15 @@ C:\Users\Danie\Desktop\GIT\Command_EJ2\BE\obj\Debug\net8.0\BE.dll
 C:\Users\Danie\Desktop\GIT\Command_EJ2\BE\obj\Debug\net8.0\refint\BE.dll
 C:\Users\Danie\Desktop\GIT\Command_EJ2\BE\obj\Debug\net8.0\BE.pdb
 C:\Users\Danie\Desktop\GIT\Command_EJ2\BE\obj\Debug\net8.0\ref\BE.dll
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\bin\Debug\net8.0\BE.deps.json
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\bin\Debug\net8.0\BE.dll
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\bin\Debug\net8.0\BE.pdb
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.AssemblyInfoInputs.cache
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.AssemblyInfo.cs
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.csproj.CoreCompileInputs.cache
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.sourcelink.json
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.dll
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\refint\BE.dll
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\BE.pdb
+c:\Users\Danie\Desktop\GIT\Command_EJ2\Command_EJ1\BE\obj\Debug\net8.0\ref\BE.dll

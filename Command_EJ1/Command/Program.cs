@@ -2,14 +2,11 @@ namespace Command
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
+        ///PRE: Ninguno. Punto de entrada principal de la aplicación.
+        ///POST: No retorna valor. Inicializa la configuración de la aplicación e inicia Form1.
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
