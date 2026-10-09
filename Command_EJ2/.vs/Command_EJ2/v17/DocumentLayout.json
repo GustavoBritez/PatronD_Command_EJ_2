@@ -1,9 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ2\\",
+  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\danie\\desktop\\git\\command_ej2\\command_ej2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\botonpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:botonpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\accioncultivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:accioncultivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -14,31 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ2\\Form1.cs",
+              "Title": "BotonPanel.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\BotonPanel.cs",
+              "RelativeDocumentMoniker": "BotonPanel.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\BotonPanel.cs",
+              "RelativeToolTip": "BotonPanel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T01:10:47.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccionCultivo.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\AccionCultivo.cs",
+              "RelativeDocumentMoniker": "AccionCultivo.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\AccionCultivo.cs",
+              "RelativeToolTip": "AccionCultivo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T01:10:46.559Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\Danie\\Desktop\\GIT\\Command_EJ2\\Command_EJ2\\Form1.cs [Design]",
-              "RelativeToolTip": "Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-06T14:41:11.358Z",
-              "EditorCaption": " [Design]"
+              "EditorCaption": " [Dise\u00F1o]"
             }
           ]
         }

@@ -1,34 +1,66 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\Radio\\",
+  "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D8596D3E-D776-47DC-B138-1DEBE61E5743}|Command\\Radio.csproj|c:\\users\\navegador\\desktop\\radio\\command\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{D8596D3E-D776-47DC-B138-1DEBE61E5743}|Command\\Radio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\command\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8596D3E-D776-47DC-B138-1DEBE61E5743}|Command\\Radio.csproj|solutionrelative:command\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8596D3E-D776-47DC-B138-1DEBE61E5743}|Command\\Radio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\command\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{D8596D3E-D776-47DC-B138-1DEBE61E5743}|Command\\Radio.csproj|solutionrelative:command\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\radio\\bll\\procesadorvoz_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|solutionrelative:bll\\procesadorvoz_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\botonconsola.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\botonconsola.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\radio\\bll\\accion_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|solutionrelative:bll\\accion_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\comandoemergencias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\comandoemergencias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F502A657-0619-4110-8AA1-4E32EAD8E0EF}|BE\\BE.csproj|c:\\users\\navegador\\desktop\\radio\\be\\accion_be.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F502A657-0619-4110-8AA1-4E32EAD8E0EF}|BE\\BE.csproj|solutionrelative:be\\accion_be.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\radio\\servicio\\comandomodomutes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\comandomodomutes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\comandomodomutes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\radio\\servicio\\icomando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\comandopitchs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\comandopitchs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\icomando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\icomando.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\radio\\servicio\\historial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\comandopotencias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\comandopotencias.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\consolaoperador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\consolaoperador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\servicio\\historial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0B709A19-C959-4A3F-80AE-2965EFCFAF95}|Servicio\\Servicio.csproj|solutionrelative:servicio\\historial.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\bll\\transmisor_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|solutionrelative:bll\\transmisor_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F502A657-0619-4110-8AA1-4E32EAD8E0EF}|BE\\BE.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\be\\accion_be.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F502A657-0619-4110-8AA1-4E32EAD8E0EF}|BE\\BE.csproj|solutionrelative:be\\accion_be.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BF655694-793F-4538-8F16-3B2A1BC6871E}|DAL\\DAL.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\dal\\accion_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BF655694-793F-4538-8F16-3B2A1BC6871E}|DAL\\DAL.csproj|solutionrelative:dal\\accion_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\bll\\procesadorvoz_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|solutionrelative:bll\\procesadorvoz_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|c:\\users\\navegador\\desktop\\td\\command_ej1\\bll\\accion_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D580F8CF-0E8D-4B43-B487-1AD94D1D68D0}|BLL\\BLL.csproj|solutionrelative:bll\\accion_bll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,15 +70,183 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BotonConsola.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\BotonConsola.cs",
+              "RelativeDocumentMoniker": "Servicio\\BotonConsola.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\BotonConsola.cs",
+              "RelativeToolTip": "Servicio\\BotonConsola.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:57:48.347Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ComandoPitchS.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoPitchS.cs",
+              "RelativeDocumentMoniker": "Servicio\\ComandoPitchS.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoPitchS.cs",
+              "RelativeToolTip": "Servicio\\ComandoPitchS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:58:48.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ComandoEmergenciaS.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoEmergenciaS.cs",
+              "RelativeDocumentMoniker": "Servicio\\ComandoEmergenciaS.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoEmergenciaS.cs",
+              "RelativeToolTip": "Servicio\\ComandoEmergenciaS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:58:48.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ComandoModoMuteS.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoModoMuteS.cs",
+              "RelativeDocumentMoniker": "Servicio\\ComandoModoMuteS.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoModoMuteS.cs",
+              "RelativeToolTip": "Servicio\\ComandoModoMuteS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T23:33:49.045Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Form1.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Command\\Form1.cs",
+              "RelativeDocumentMoniker": "Command\\Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Command\\Form1.cs [Dise\u00F1o]",
+              "RelativeToolTip": "Command\\Form1.cs [Dise\u00F1o]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:54:30.492Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Command\\Form1.cs",
+              "RelativeDocumentMoniker": "Command\\Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Command\\Form1.cs",
+              "RelativeToolTip": "Command\\Form1.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAswFQAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:46:09.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IComando.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\IComando.cs",
+              "RelativeDocumentMoniker": "Servicio\\IComando.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\IComando.cs",
+              "RelativeToolTip": "Servicio\\IComando.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T23:34:11.738Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ComandoPotenciaS.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoPotenciaS.cs",
+              "RelativeDocumentMoniker": "Servicio\\ComandoPotenciaS.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ComandoPotenciaS.cs",
+              "RelativeToolTip": "Servicio\\ComandoPotenciaS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:58:49.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ConsolaOperador.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ConsolaOperador.cs",
+              "RelativeDocumentMoniker": "Servicio\\ConsolaOperador.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\ConsolaOperador.cs",
+              "RelativeToolTip": "Servicio\\ConsolaOperador.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAwCUAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:49:46.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Historial.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\Historial.cs",
+              "RelativeDocumentMoniker": "Servicio\\Historial.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\Servicio\\Historial.cs",
+              "RelativeToolTip": "Servicio\\Historial.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T23:34:11.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Transmisor_BLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\Transmisor_BLL.cs",
+              "RelativeDocumentMoniker": "BLL\\Transmisor_BLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\Transmisor_BLL.cs",
+              "RelativeToolTip": "BLL\\Transmisor_BLL.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T22:44:55.772Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Accion_DAL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\DAL\\Accion_DAL.cs",
+              "RelativeDocumentMoniker": "DAL\\Accion_DAL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\DAL\\Accion_DAL.cs",
+              "RelativeToolTip": "DAL\\Accion_DAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T20:30:05.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Accion_BE.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BE\\Accion_BE.cs",
+              "RelativeDocumentMoniker": "BE\\Accion_BE.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BE\\Accion_BE.cs",
+              "RelativeToolTip": "BE\\Accion_BE.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T23:54:16.703Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "ProcesadorVoz_BLL.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\BLL\\ProcesadorVoz_BLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\ProcesadorVoz_BLL.cs",
               "RelativeDocumentMoniker": "BLL\\ProcesadorVoz_BLL.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\BLL\\ProcesadorVoz_BLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\ProcesadorVoz_BLL.cs",
               "RelativeToolTip": "BLL\\ProcesadorVoz_BLL.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -54,75 +254,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Accion_BE.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\Accion_BE.cs",
-              "RelativeDocumentMoniker": "BE\\Accion_BE.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\BE\\Accion_BE.cs",
-              "RelativeToolTip": "BE\\Accion_BE.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T23:54:16.703Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IComando.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\IComando.cs",
-              "RelativeDocumentMoniker": "Servicio\\IComando.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\IComando.cs",
-              "RelativeToolTip": "Servicio\\IComando.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T23:34:11.738Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Historial.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\Historial.cs",
-              "RelativeDocumentMoniker": "Servicio\\Historial.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\Historial.cs",
-              "RelativeToolTip": "Servicio\\Historial.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T23:34:11.135Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\Command\\Form1.cs",
-              "RelativeDocumentMoniker": "Command\\Form1.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\Command\\Form1.cs [Dise\u00F1o]",
-              "RelativeToolTip": "Command\\Form1.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T23:33:17.831Z",
-              "EditorCaption": " [Dise\u00F1o]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 14,
               "Title": "Accion_BLL.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\BLL\\Accion_BLL.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\Accion_BLL.cs",
               "RelativeDocumentMoniker": "BLL\\Accion_BLL.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\BLL\\Accion_BLL.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ1\\BLL\\Accion_BLL.cs",
               "RelativeToolTip": "BLL\\Accion_BLL.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-02T23:54:20.842Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ComandoModoMuteS.cs",
-              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\ComandoModoMuteS.cs",
-              "RelativeDocumentMoniker": "Servicio\\ComandoModoMuteS.cs",
-              "ToolTip": "C:\\Users\\Navegador\\Desktop\\Radio\\Servicio\\ComandoModoMuteS.cs",
-              "RelativeToolTip": "Servicio\\ComandoModoMuteS.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-02T23:33:49.045Z"
             }
           ]
         }

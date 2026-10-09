@@ -10,40 +10,7 @@ namespace Command
 {
     public partial class Form1 : Form
     {
-        private static readonly Color BgForm            = Color.FromArgb(17, 20, 24);
-        private static readonly Color BgCard            = Color.FromArgb(24, 28, 35);
-        private static readonly Color BgCardHeader      = Color.FromArgb(30, 35, 45);
-        private static readonly Color BgInnerPanel      = Color.FromArgb(19, 22, 28);
-        private static readonly Color BorderCard        = Color.FromArgb(43, 50, 64);
-        private static readonly Color BorderControl     = Color.FromArgb(51, 60, 77);
-
-        private static readonly Color TextPrimary       = Color.FromArgb(248, 250, 252);
-        private static readonly Color TextSecondary     = Color.FromArgb(148, 163, 184);
-        private static readonly Color TextMuted         = Color.FromArgb(100, 116, 139);
-
-        private static readonly Color BtnDefaultBg      = Color.FromArgb(32, 38, 49);
-        private static readonly Color BtnDefaultHover   = Color.FromArgb(43, 51, 66);
-        private static readonly Color BtnDefaultPress   = Color.FromArgb(26, 31, 40);
-
-        private static readonly Color AccentBlue        = Color.FromArgb(37, 99, 235);
-        private static readonly Color AccentBlueHover   = Color.FromArgb(29, 78, 216);
-        private static readonly Color AccentBlueBorder  = Color.FromArgb(59, 130, 246);
-
-        private static readonly Color OnAirBg           = Color.FromArgb(6, 78, 59);
-        private static readonly Color OnAirBorder       = Color.FromArgb(16, 185, 129);
-        private static readonly Color OnAirText         = Color.FromArgb(167, 243, 208);
-
-        private static readonly Color MutedBg           = Color.FromArgb(69, 10, 10);
-        private static readonly Color MutedBorder       = Color.FromArgb(239, 68, 68);
-        private static readonly Color MutedText         = Color.FromArgb(254, 202, 202);
-
-        private static readonly Color PitchActiveBg     = Color.FromArgb(46, 16, 101);
-        private static readonly Color PitchActiveBorder = Color.FromArgb(139, 92, 246);
-        private static readonly Color PitchActiveText   = Color.FromArgb(233, 213, 255);
-
-        private static readonly Color UndoBg            = Color.FromArgb(50, 24, 28);
-        private static readonly Color UndoBorder        = Color.FromArgb(185, 28, 28);
-        private static readonly Color UndoText          = Color.FromArgb(254, 202, 202);
+       
 
         private readonly Transmisor_BLL _transmisor = new Transmisor_BLL();
         private readonly ProcesadorVoz_BLL _procesador = new ProcesadorVoz_BLL();
@@ -51,6 +18,236 @@ namespace Command
 
         private readonly Historial _historial = new Historial();
         private readonly ConsolaOperador _consola;
+
+        
+        ///PRE: Ninguno.
+        ///POST: Inicializa los componentes, consola, interfaz y activa la configuración inicial.
+        public Form1()
+        {
+            InitializeComponent();
+            _consola = new ConsolaOperador(_historial, _accionBll);
+
+            DoubleBuffered = true;
+            ResizeRedraw = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+
+            ConstruirInterfaz();
+            ActivarModoManana();
+            RefrescarTelemetria();
+
+            KeyDown += Consola_KeyDown;
+        }
+
+
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Asigna comandos del perfil de la mañana a los botones del operador y actualiza la vista.
+        private void ActivarModoManana()
+        {
+            _consola.ConfigurarBoton(1, "Mutear Micrófonos", new ComandoModoMuteS(_transmisor));
+            _consola.ConfigurarBoton(2, "Distorsión Voz (Anónimo)", new ComandoPitchS(_procesador));
+            _consola.ConfigurarBoton(3, "Potencia Reducida (50 W)", new ComandoPotenciaS(_transmisor, 50));
+            _consola.ConfigurarBoton(4, "Corte de Emergencia", new ComandoEmergenciaS(_transmisor));
+
+            btnModoManana.BackColor = AccentBlue;
+            btnModoManana.FlatAppearance.BorderColor = AccentBlueBorder;
+            btnModoManana.ForeColor = TextPrimary;
+
+            btnModoNoche.BackColor = BtnDefaultBg;
+            btnModoNoche.FlatAppearance.BorderColor = BorderControl;
+            btnModoNoche.ForeColor = TextSecondary;
+
+            lblStatusBar.Text = "Configuración activa: Turno Mañana (Entrevistas • Potencia 50 W • Filtro de Distorsión).";
+            RefrescarTelemetria();
+        }
+
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Asigna comandos del perfil de la noche a los botones del operador y actualiza la vista.
+        private void ActivarModoNoche()
+        {
+            _consola.ConfigurarBoton(1, "Mutear Transmisión", new ComandoModoMuteS(_transmisor));
+            _consola.ConfigurarBoton(2, "Filtro DJ / Electrónica", new ComandoPitchS(_procesador));
+            _consola.ConfigurarBoton(3, "Potencia Completa (100 W)", new ComandoPotenciaS(_transmisor, 100));
+            _consola.ConfigurarBoton(4, "Corte de Emergencia", new ComandoEmergenciaS(_transmisor));
+
+            btnModoNoche.BackColor = AccentBlue;
+            btnModoNoche.FlatAppearance.BorderColor = AccentBlueBorder;
+            btnModoNoche.ForeColor = TextPrimary;
+
+            btnModoManana.BackColor = BtnDefaultBg;
+            btnModoManana.FlatAppearance.BorderColor = BorderControl;
+            btnModoManana.ForeColor = TextSecondary;
+
+            lblStatusBar.Text = "Configuración activa: Turno Noche (Música Electrónica • Potencia 100 W • Filtro DJ).";
+            RefrescarTelemetria();
+        }
+
+        ///PRE: Recibe numero (int) correspondiente al slot de botón presionado.
+        ///POST: No retorna valor. Ejecuta el comando asociado, actualiza la telemetría y la barra de estado.
+        private void PresionarBoton(int numero)
+        {
+            var boton = _consola.ObtenerBoton(numero);
+            if (boton?.Comando != null)
+            {
+                string nombre = boton.Comando.nombre;
+                _consola.PresionarBoton(numero);
+                lblStatusBar.Text = $"Ejecutado: Botón [{numero}] activó '{nombre}' a las {DateTime.Now:HH:mm:ss}";
+                RefrescarTelemetria();
+            }
+        }
+
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Deshace la última acción registrada en el historial y actualiza la telemetría.
+        private void PresionarPanico()
+        {
+            var deshecho = _consola.PresionarBotonPanico();
+            if (deshecho != null)
+            {
+                lblStatusBar.Text = $"Deshecho: Se revirtió el comando '{deshecho.nombre}' a las {DateTime.Now:HH:mm:ss}";
+            }
+            else
+            {
+                lblStatusBar.Text = "Aviso: No hay comandos en el historial para deshacer.";
+            }
+            RefrescarTelemetria();
+        }
+
+        ///PRE: Ninguno.
+        ///POST: No retorna valor. Actualiza todos los elementos de la interfaz reflejando el estado de los receptores e historial.
+        private void RefrescarTelemetria()
+        {
+            lblTagSlot1.Text = $"Comando asignado: {_consola.ObtenerBoton(1)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot2.Text = $"Comando asignado: {_consola.ObtenerBoton(2)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot3.Text = $"Comando asignado: {_consola.ObtenerBoton(3)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot4.Text = $"Comando asignado: {_consola.ObtenerBoton(4)?.Comando?.nombre ?? "Ninguno"}";
+
+            bool muteado = _transmisor.EstaMuteado();
+            if (muteado)
+            {
+                lblDisplayTxStatus.Text = "■ CANAL SILENCIADO";
+                lblDisplayTxStatus.BackColor = MutedBg;
+                lblDisplayTxStatus.ForeColor = MutedText;
+            }
+            else
+            {
+                lblDisplayTxStatus.Text = "● TRANSMISIÓN EN EL AIRE";
+                lblDisplayTxStatus.BackColor = OnAirBg;
+                lblDisplayTxStatus.ForeColor = OnAirText;
+            }
+
+            int potencia = _transmisor.ObtenerPotenciaActual();
+            string modoPotencia = potencia == 0 ? "Apagada" : (potencia <= 50 ? "Modo Reducido" : "Nivel Máximo");
+            lblDisplayTxPower.Text = $"Potencia de Antena: {potencia} W ({modoPotencia})";
+            pnlPowerMeter?.Invalidate();
+
+            bool pitch = _procesador.EstaPitchActivo();
+            if (pitch)
+            {
+                lblDisplayDspPitch.Text = "● Efecto de Voz Activado";
+                lblDisplayDspPitch.BackColor = PitchActiveBg;
+                lblDisplayDspPitch.ForeColor = PitchActiveText;
+            }
+            else
+            {
+                lblDisplayDspPitch.Text = "○ Voz Natural (Bypass)";
+                lblDisplayDspPitch.BackColor = BgInnerPanel;
+                lblDisplayDspPitch.ForeColor = TextSecondary;
+            }
+
+            lblDisplayDspGain.Text = $"Ganancia de Entrada: {_procesador.ObtenerGananciaActual()} dB (Nivel Nominal)";
+
+            lstPilaComandos.Items.Clear();
+            var lista = _historial.ObtenerTodos().ToList();
+            lblProfundidadPila.Text = $"Comandos en pila: {lista.Count}";
+
+            if (lista.Count == 0)
+            {
+                lstPilaComandos.Items.Add("(No hay comandos en el historial)");
+            }
+            else
+            {
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    string prefijo = i == 0 ? "▶ [Tope] " : $"   [{lista.Count - i}] ";
+                    lstPilaComandos.Items.Add($"{prefijo}{lista[i].nombre}");
+                }
+            }
+
+            lblDisplayTxStatus.Invalidate();
+            lblDisplayDspPitch.Invalidate();
+        }
+
+        ///PRE: Recibe sender (object?) y e (KeyEventArgs) con los datos del evento de teclado.
+        ///POST: No retorna valor. Captura combinaciones de teclas de acceso rápido y acciona los comandos.
+        private void Consola_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                PresionarPanico();
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1)
+            {
+                PresionarBoton(1);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.D2 || e.KeyCode == Keys.NumPad2)
+            {
+                PresionarBoton(2);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3)
+            {
+                PresionarBoton(3);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.D4 || e.KeyCode == Keys.NumPad4)
+            {
+                PresionarBoton(4);
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.P || e.KeyCode == Keys.Space)
+            {
+                PresionarBoton(1);
+                e.Handled = true;
+            }
+        }
+
+        #region graficos
+
+        private static readonly Color BgForm = Color.FromArgb(17, 20, 24);
+        private static readonly Color BgCard = Color.FromArgb(24, 28, 35);
+        private static readonly Color BgCardHeader = Color.FromArgb(30, 35, 45);
+        private static readonly Color BgInnerPanel = Color.FromArgb(19, 22, 28);
+        private static readonly Color BorderCard = Color.FromArgb(43, 50, 64);
+        private static readonly Color BorderControl = Color.FromArgb(51, 60, 77);
+
+        private static readonly Color TextPrimary = Color.FromArgb(248, 250, 252);
+        private static readonly Color TextSecondary = Color.FromArgb(148, 163, 184);
+        private static readonly Color TextMuted = Color.FromArgb(100, 116, 139);
+
+        private static readonly Color BtnDefaultBg = Color.FromArgb(32, 38, 49);
+        private static readonly Color BtnDefaultHover = Color.FromArgb(43, 51, 66);
+        private static readonly Color BtnDefaultPress = Color.FromArgb(26, 31, 40);
+
+        private static readonly Color AccentBlue = Color.FromArgb(37, 99, 235);
+        private static readonly Color AccentBlueHover = Color.FromArgb(29, 78, 216);
+        private static readonly Color AccentBlueBorder = Color.FromArgb(59, 130, 246);
+
+        private static readonly Color OnAirBg = Color.FromArgb(6, 78, 59);
+        private static readonly Color OnAirBorder = Color.FromArgb(16, 185, 129);
+        private static readonly Color OnAirText = Color.FromArgb(167, 243, 208);
+
+        private static readonly Color MutedBg = Color.FromArgb(69, 10, 10);
+        private static readonly Color MutedBorder = Color.FromArgb(239, 68, 68);
+        private static readonly Color MutedText = Color.FromArgb(254, 202, 202);
+
+        private static readonly Color PitchActiveBg = Color.FromArgb(46, 16, 101);
+        private static readonly Color PitchActiveBorder = Color.FromArgb(139, 92, 246);
+        private static readonly Color PitchActiveText = Color.FromArgb(233, 213, 255);
+
+        private static readonly Color UndoBg = Color.FromArgb(50, 24, 28);
+        private static readonly Color UndoBorder = Color.FromArgb(185, 28, 28);
+        private static readonly Color UndoText = Color.FromArgb(254, 202, 202);
 
         private Button btnSlot1 = null!;
         private Button btnSlot2 = null!;
@@ -76,27 +273,6 @@ namespace Command
         private ListBox lstPilaComandos = null!;
         private Label lblProfundidadPila = null!;
         private Label lblStatusBar = null!;
-
-        ///PRE: Ninguno.
-        ///POST: Inicializa los componentes, consola, interfaz y activa la configuración inicial.
-        public Form1()
-        {
-            InitializeComponent();
-            _consola = new ConsolaOperador(_historial, _accionBll);
-
-            DoubleBuffered = true;
-            ResizeRedraw = true;
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
-
-            ConstruirInterfaz();
-            ActivarModoManana();
-            RefrescarTelemetria();
-
-            KeyDown += Consola_KeyDown;
-        }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Inicializa y estructura todos los controles visuales del formulario.
         private void ConstruirInterfaz()
         {
             Controls.Clear();
@@ -652,178 +828,6 @@ namespace Command
             using var penLine = new Pen(BorderCard, 1);
             g.DrawLine(penLine, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
         }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Asigna comandos del perfil de la mañana a los botones del operador y actualiza la vista.
-        private void ActivarModoManana()
-        {
-            _consola.ConfigurarBoton(1, "Mutear Micrófonos", new ComandoModoMuteS(_transmisor));
-            _consola.ConfigurarBoton(2, "Distorsión Voz (Anónimo)", new ComandoPitchS(_procesador));
-            _consola.ConfigurarBoton(3, "Potencia Reducida (50 W)", new ComandoPotenciaS(_transmisor, 50));
-            _consola.ConfigurarBoton(4, "Corte de Emergencia", new ComandoEmergenciaS(_transmisor));
-
-            btnModoManana.BackColor = AccentBlue;
-            btnModoManana.FlatAppearance.BorderColor = AccentBlueBorder;
-            btnModoManana.ForeColor = TextPrimary;
-
-            btnModoNoche.BackColor = BtnDefaultBg;
-            btnModoNoche.FlatAppearance.BorderColor = BorderControl;
-            btnModoNoche.ForeColor = TextSecondary;
-
-            lblStatusBar.Text = "Configuración activa: Turno Mañana (Entrevistas • Potencia 50 W • Filtro de Distorsión).";
-            RefrescarTelemetria();
-        }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Asigna comandos del perfil de la noche a los botones del operador y actualiza la vista.
-        private void ActivarModoNoche()
-        {
-            _consola.ConfigurarBoton(1, "Mutear Transmisión", new ComandoModoMuteS(_transmisor));
-            _consola.ConfigurarBoton(2, "Filtro DJ / Electrónica", new ComandoPitchS(_procesador));
-            _consola.ConfigurarBoton(3, "Potencia Completa (100 W)", new ComandoPotenciaS(_transmisor, 100));
-            _consola.ConfigurarBoton(4, "Corte de Emergencia", new ComandoEmergenciaS(_transmisor));
-
-            btnModoNoche.BackColor = AccentBlue;
-            btnModoNoche.FlatAppearance.BorderColor = AccentBlueBorder;
-            btnModoNoche.ForeColor = TextPrimary;
-
-            btnModoManana.BackColor = BtnDefaultBg;
-            btnModoManana.FlatAppearance.BorderColor = BorderControl;
-            btnModoManana.ForeColor = TextSecondary;
-
-            lblStatusBar.Text = "Configuración activa: Turno Noche (Música Electrónica • Potencia 100 W • Filtro DJ).";
-            RefrescarTelemetria();
-        }
-
-        ///PRE: Recibe numero (int) correspondiente al slot de botón presionado.
-        ///POST: No retorna valor. Ejecuta el comando asociado, actualiza la telemetría y la barra de estado.
-        private void PresionarBoton(int numero)
-        {
-            var boton = _consola.ObtenerBoton(numero);
-            if (boton?.Comando != null)
-            {
-                string nombre = boton.Comando.nombre;
-                _consola.PresionarBoton(numero);
-                lblStatusBar.Text = $"Ejecutado: Botón [{numero}] activó '{nombre}' a las {DateTime.Now:HH:mm:ss}";
-                RefrescarTelemetria();
-            }
-        }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Deshace la última acción registrada en el historial y actualiza la telemetría.
-        private void PresionarPanico()
-        {
-            var deshecho = _consola.PresionarBotonPanico();
-            if (deshecho != null)
-            {
-                lblStatusBar.Text = $"Deshecho: Se revirtió el comando '{deshecho.nombre}' a las {DateTime.Now:HH:mm:ss}";
-            }
-            else
-            {
-                lblStatusBar.Text = "Aviso: No hay comandos en el historial para deshacer.";
-            }
-            RefrescarTelemetria();
-        }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Actualiza todos los elementos de la interfaz reflejando el estado de los receptores e historial.
-        private void RefrescarTelemetria()
-        {
-            lblTagSlot1.Text = $"Comando asignado: {_consola.ObtenerBoton(1)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot2.Text = $"Comando asignado: {_consola.ObtenerBoton(2)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot3.Text = $"Comando asignado: {_consola.ObtenerBoton(3)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot4.Text = $"Comando asignado: {_consola.ObtenerBoton(4)?.Comando?.nombre ?? "Ninguno"}";
-
-            bool muteado = _transmisor.EstaMuteado();
-            if (muteado)
-            {
-                lblDisplayTxStatus.Text = "■ CANAL SILENCIADO";
-                lblDisplayTxStatus.BackColor = MutedBg;
-                lblDisplayTxStatus.ForeColor = MutedText;
-            }
-            else
-            {
-                lblDisplayTxStatus.Text = "● TRANSMISIÓN EN EL AIRE";
-                lblDisplayTxStatus.BackColor = OnAirBg;
-                lblDisplayTxStatus.ForeColor = OnAirText;
-            }
-
-            int potencia = _transmisor.ObtenerPotenciaActual();
-            string modoPotencia = potencia == 0 ? "Apagada" : (potencia <= 50 ? "Modo Reducido" : "Nivel Máximo");
-            lblDisplayTxPower.Text = $"Potencia de Antena: {potencia} W ({modoPotencia})";
-            pnlPowerMeter?.Invalidate();
-
-            bool pitch = _procesador.EstaPitchActivo();
-            if (pitch)
-            {
-                lblDisplayDspPitch.Text = "● Efecto de Voz Activado";
-                lblDisplayDspPitch.BackColor = PitchActiveBg;
-                lblDisplayDspPitch.ForeColor = PitchActiveText;
-            }
-            else
-            {
-                lblDisplayDspPitch.Text = "○ Voz Natural (Bypass)";
-                lblDisplayDspPitch.BackColor = BgInnerPanel;
-                lblDisplayDspPitch.ForeColor = TextSecondary;
-            }
-
-            lblDisplayDspGain.Text = $"Ganancia de Entrada: {_procesador.ObtenerGananciaActual()} dB (Nivel Nominal)";
-
-            lstPilaComandos.Items.Clear();
-            var lista = _historial.ObtenerTodos().ToList();
-            lblProfundidadPila.Text = $"Comandos en pila: {lista.Count}";
-
-            if (lista.Count == 0)
-            {
-                lstPilaComandos.Items.Add("(No hay comandos en el historial)");
-            }
-            else
-            {
-                for (int i = 0; i < lista.Count; i++)
-                {
-                    string prefijo = i == 0 ? "▶ [Tope] " : $"   [{lista.Count - i}] ";
-                    lstPilaComandos.Items.Add($"{prefijo}{lista[i].nombre}");
-                }
-            }
-
-            lblDisplayTxStatus.Invalidate();
-            lblDisplayDspPitch.Invalidate();
-        }
-
-        ///PRE: Recibe sender (object?) y e (KeyEventArgs) con los datos del evento de teclado.
-        ///POST: No retorna valor. Captura combinaciones de teclas de acceso rápido y acciona los comandos.
-        private void Consola_KeyDown(object? sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.Z)
-            {
-                PresionarPanico();
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1)
-            {
-                PresionarBoton(1);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.D2 || e.KeyCode == Keys.NumPad2)
-            {
-                PresionarBoton(2);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.D3 || e.KeyCode == Keys.NumPad3)
-            {
-                PresionarBoton(3);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.D4 || e.KeyCode == Keys.NumPad4)
-            {
-                PresionarBoton(4);
-                e.Handled = true;
-            }
-            else if (e.KeyCode == Keys.P || e.KeyCode == Keys.Space)
-            {
-                PresionarBoton(1);
-                e.Handled = true;
-            }
-        }
+        #endregion
     }
 }
