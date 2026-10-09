@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Command_EJ2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c5d808f3515d70e8e544146c6331c73145a0399")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4050e3c23ea6f420d5eb51cd02d96d314553e95b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Command_EJ2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Command_EJ2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

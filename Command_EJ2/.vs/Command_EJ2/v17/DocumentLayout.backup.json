@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\botonpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:botonpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|c:\\users\\navegador\\desktop\\td\\command_ej2\\accioncultivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{78A5C72E-7904-4BC9-9499-619F3AEF5CE1}|Command_EJ2.csproj|solutionrelative:accioncultivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,6 +31,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T01:34:58.329Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BotonPanel.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\BotonPanel.cs",
+              "RelativeDocumentMoniker": "BotonPanel.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\BotonPanel.cs",
+              "RelativeToolTip": "BotonPanel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T01:10:47.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccionCultivo.cs",
+              "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\AccionCultivo.cs",
+              "RelativeDocumentMoniker": "AccionCultivo.cs",
+              "ToolTip": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\AccionCultivo.cs",
+              "RelativeToolTip": "AccionCultivo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-09T01:10:46.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\Navegador\\Desktop\\TD\\Command_EJ2\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",

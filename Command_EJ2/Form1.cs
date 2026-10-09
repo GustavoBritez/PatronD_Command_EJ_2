@@ -8,6 +8,7 @@ namespace Command_EJ2
 {
     public partial class Form1 : Form
     {
+        #region
         private static readonly Color BgForm            = Color.FromArgb(17, 22, 20);
         private static readonly Color BgCard            = Color.FromArgb(23, 30, 27);
         private static readonly Color BgCardHeader      = Color.FromArgb(29, 38, 34);
@@ -70,27 +71,55 @@ namespace Command_EJ2
         private ListBox lstPilaComandos = null!;
         private Label lblProfundidadPila = null!;
         private Label lblStatusBar = null!;
-
-        ///PRE: Ninguno.
-        ///POST: Inicializa los componentes, el panel invocador, la interfaz y activa el perfil inicial.
-        public Form1()
+        private void RefrescarTelemetria()
         {
-            InitializeComponent();
-            _panel = new PanelInvernadero(_historial);
+            lblTagSlot1.Text = $"Comando asignado: {_panel.ObtenerBoton(1)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot2.Text = $"Comando asignado: {_panel.ObtenerBoton(2)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot3.Text = $"Comando asignado: {_panel.ObtenerBoton(3)?.Comando?.nombre ?? "Ninguno"}";
+            lblTagSlot4.Text = $"Comando asignado: {_panel.ObtenerBoton(4)?.Comando?.nombre ?? "Ninguno"}";
 
-            DoubleBuffered = true;
-            ResizeRedraw = true;
-            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            int temp = _climatizador.ObtenerTemperatura();
+            lblDisplayClima.Text = $"Temperatura del Domo: {temp} °C";
+            pnlTempMeter?.Invalidate();
 
-            ConstruirInterfaz();
-            ActivarPerfilVegetativo();
-            RefrescarTelemetria();
+            bool compuertas = _climatizador.EstanCompuertasAbiertas();
+            lblDisplayCompuertas.Text = compuertas ? "Compuertas de Ventilación: ABIERTAS (VENTILACIÓN FORZADA)" : "Compuertas de Ventilación: CERRADAS (ATMÓSFERA CONTROLADA)";
+            lblDisplayCompuertas.ForeColor = compuertas ? WarningStateBorder : TextSecondary;
 
-            KeyDown += Panel_KeyDown;
+            bool riegoActivo = _riego.EstaRiegoActivo();
+            if (riegoActivo)
+            {
+                lblDisplayRiego.Text = $"● Bomba Activa • Dosificando {_riego.ObtenerDosificacion()} ml de Nutrientes";
+                lblDisplayRiego.BackColor = ActiveStateBg;
+                lblDisplayRiego.ForeColor = ActiveStateText;
+            }
+            else
+            {
+                lblDisplayRiego.Text = "○ Bomba de Riego en Espera (0 ml)";
+                lblDisplayRiego.BackColor = BgInnerPanel;
+                lblDisplayRiego.ForeColor = TextSecondary;
+            }
+
+            lblDisplayLuz.Text = $"Régimen Lumínico: {_iluminacion.ObtenerEspectro()}";
+
+            lstPilaComandos.Items.Clear();
+            var lista = _historial.ObtenerTodos().ToList();
+            lblProfundidadPila.Text = $"Comandos en pila: {lista.Count}";
+
+            if (lista.Count == 0)
+            {
+                lstPilaComandos.Items.Add("(No hay operaciones registradas)");
+            }
+            else
+            {
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    string prefijo = i == 0 ? "▶ [Tope] " : $"   [{lista.Count - i}] ";
+                    lstPilaComandos.Items.Add($"{prefijo}{lista[i].nombre}");
+                }
+            }
         }
 
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Construye y ensambla la jerarquía de controles de la ventana.
         private void ConstruirInterfaz()
         {
             Controls.Clear();
@@ -498,9 +527,6 @@ namespace Command_EJ2
 
             Controls.Add(tblMainGrid);
         }
-
-        ///PRE: Recibe titulo (string) del encabezado.
-        ///POST: Retorna un Panel configurado con borde y cabecera visual.
         private Panel CrearCardPanel(string titulo)
         {
             var pnl = new Panel { BackColor = BgCard };
@@ -593,9 +619,24 @@ namespace Command_EJ2
             using var penLine = new Pen(BorderCard, 1);
             g.DrawLine(penLine, e.Bounds.Left, e.Bounds.Bottom - 1, e.Bounds.Right, e.Bounds.Bottom - 1);
         }
+        #endregion
+        public Form1()
+        {
+            InitializeComponent();
+            _panel = new PanelInvernadero(_historial);
 
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Reasigna los comandos de la fase vegetativa a los botones del panel.
+            DoubleBuffered = true;
+            ResizeRedraw = true;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+
+            ConstruirInterfaz();
+            ActivarPerfilVegetativo();
+            RefrescarTelemetria();
+
+            KeyDown += Panel_KeyDown;
+        }
+
+
         private void ActivarPerfilVegetativo()
         {
             _panel.ConfigurarBoton(1, "Riego de Crecimiento (150 ml)", new ComandoRiegoNutrientes(_riego, 150));
@@ -664,57 +705,6 @@ namespace Command_EJ2
                 lblStatusBar.Text = "Aviso: No hay operaciones en el historial para deshacer.";
             }
             RefrescarTelemetria();
-        }
-
-        ///PRE: Ninguno.
-        ///POST: No retorna valor. Sincroniza la telemetría visual con el estado de los receptores e historial.
-        private void RefrescarTelemetria()
-        {
-            lblTagSlot1.Text = $"Comando asignado: {_panel.ObtenerBoton(1)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot2.Text = $"Comando asignado: {_panel.ObtenerBoton(2)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot3.Text = $"Comando asignado: {_panel.ObtenerBoton(3)?.Comando?.nombre ?? "Ninguno"}";
-            lblTagSlot4.Text = $"Comando asignado: {_panel.ObtenerBoton(4)?.Comando?.nombre ?? "Ninguno"}";
-
-            int temp = _climatizador.ObtenerTemperatura();
-            lblDisplayClima.Text = $"Temperatura del Domo: {temp} °C";
-            pnlTempMeter?.Invalidate();
-
-            bool compuertas = _climatizador.EstanCompuertasAbiertas();
-            lblDisplayCompuertas.Text = compuertas ? "Compuertas de Ventilación: ABIERTAS (VENTILACIÓN FORZADA)" : "Compuertas de Ventilación: CERRADAS (ATMÓSFERA CONTROLADA)";
-            lblDisplayCompuertas.ForeColor = compuertas ? WarningStateBorder : TextSecondary;
-
-            bool riegoActivo = _riego.EstaRiegoActivo();
-            if (riegoActivo)
-            {
-                lblDisplayRiego.Text = $"● Bomba Activa • Dosificando {_riego.ObtenerDosificacion()} ml de Nutrientes";
-                lblDisplayRiego.BackColor = ActiveStateBg;
-                lblDisplayRiego.ForeColor = ActiveStateText;
-            }
-            else
-            {
-                lblDisplayRiego.Text = "○ Bomba de Riego en Espera (0 ml)";
-                lblDisplayRiego.BackColor = BgInnerPanel;
-                lblDisplayRiego.ForeColor = TextSecondary;
-            }
-
-            lblDisplayLuz.Text = $"Régimen Lumínico: {_iluminacion.ObtenerEspectro()}";
-
-            lstPilaComandos.Items.Clear();
-            var lista = _historial.ObtenerTodos().ToList();
-            lblProfundidadPila.Text = $"Comandos en pila: {lista.Count}";
-
-            if (lista.Count == 0)
-            {
-                lstPilaComandos.Items.Add("(No hay operaciones registradas)");
-            }
-            else
-            {
-                for (int i = 0; i < lista.Count; i++)
-                {
-                    string prefijo = i == 0 ? "▶ [Tope] " : $"   [{lista.Count - i}] ";
-                    lstPilaComandos.Items.Add($"{prefijo}{lista[i].nombre}");
-                }
-            }
         }
 
         ///PRE: Recibe sender (object?) y e (KeyEventArgs) con los datos de pulsación de teclado.
